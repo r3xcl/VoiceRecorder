@@ -42,10 +42,10 @@
         app:layout_constraintTop_toBottomOf="@+id/rec_filename" />
 
     <ImageView
-        android:id="@+id/rec_btn"
+        android:id="@+id/btn_record"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@drawable/ic_rec"
+        android:src="@drawable/ic_dis_rec"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,9 +57,9 @@
         android:src="@drawable/ic_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/rec_btn"
-        app:layout_constraintBottom_toBottomOf="@id/rec_btn"
-        app:layout_constraintStart_toEndOf="@id/rec_btn"
+        app:layout_constraintTop_toTopOf="@id/btn_record"
+        app:layout_constraintBottom_toBottomOf="@id/btn_record"
+        app:layout_constraintStart_toEndOf="@id/btn_record"
         app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
