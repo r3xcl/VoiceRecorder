@@ -1,5 +1,6 @@
 package com.r3xcl.voicerecorder;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,7 +18,8 @@ import android.widget.ImageView;
 public class RecordFragment extends Fragment implements View.OnClickListener {
 
     private NavController navController;
-    private ImageView btn_list;
+    private ImageView btn_list, btn_record;
+    private boolean isRecording = false;
 
     public RecordFragment() {
 
@@ -39,14 +41,30 @@ public class RecordFragment extends Fragment implements View.OnClickListener {
 
         btn_list = view.findViewById(R.id.btn_record_list);
         btn_list.setOnClickListener(this);
+
+        btn_record = view.findViewById(R.id.btn_record);
+        btn_record.setOnClickListener(this);
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     @Override
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btn_record_list:
                 navController.navigate(R.id.action_recordFragment_to_audioListFragment);
                 break;
+            case R.id.btn_record:
+                if(isRecording){
+                    //Stop
+                    btn_record.setImageDrawable(getResources().getDrawable(R.drawable.ic_dis_rec, null));
+                    isRecording = false;
+                }else{
+                    //Start
+                    btn_record.setImageDrawable(getResources().getDrawable(R.drawable.ic_en_rec, null));
+                    isRecording = true;
+                }
+                break;
+
         }
     }
 }
