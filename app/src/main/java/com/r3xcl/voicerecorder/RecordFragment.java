@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Chronometer;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.io.IOException;
 import java.security.Permission;
@@ -32,6 +33,8 @@ import java.util.Locale;
 public class RecordFragment extends Fragment implements View.OnClickListener {
 
     private NavController navController;
+
+    private TextView fileNameTV;
 
     private ImageView btn_list, btn_record;
 
@@ -71,6 +74,8 @@ public class RecordFragment extends Fragment implements View.OnClickListener {
         btn_record.setOnClickListener(this);
 
         recordTimer = view.findViewById(R.id.record_timer);
+
+        fileNameTV = view.findViewById(R.id.rec_filename);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -115,6 +120,8 @@ public class RecordFragment extends Fragment implements View.OnClickListener {
         String recordPath = getActivity().getExternalFilesDir("/").getAbsolutePath();
         recordFile = date.format(now) + ".3gp";
 
+        fileNameTV.setText("Запись, имя файла: " + recordFile);
+
         mediaRecorder = new MediaRecorder();
         mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
@@ -133,6 +140,8 @@ public class RecordFragment extends Fragment implements View.OnClickListener {
     private void stopRecording() {
         recordTimer.setBase(SystemClock.elapsedRealtime());
         recordTimer.stop();
+
+        fileNameTV.setText("Запись завершена, файл сохранен: " + recordFile);
 
         mediaRecorder.stop();
         mediaRecorder.release();
