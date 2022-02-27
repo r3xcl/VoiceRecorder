@@ -6,8 +6,9 @@
         <entry key="app/src/main/res/drawable/media_header_bg.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/drawable/player_bg.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.21920289855072464" />
-        <entry key="app/src/main/res/layout/fragment_audio_list.xml" value="0.21920289855072464" />
+        <entry key="app/src/main/res/layout/fragment_audio_list.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_record.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_list.xml" value="0.335" />
         <entry key="app/src/main/res/layout/player_sheet.xml" value="0.165" />
       </map>
     </option>
