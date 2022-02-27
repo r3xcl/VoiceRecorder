@@ -2,6 +2,8 @@ package com.r3xcl.voicerecorder;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.media.MediaRecorder;
 import android.os.Build;
@@ -86,7 +88,22 @@ public class RecordFragment extends Fragment implements View.OnClickListener {
         switch (view.getId()){
 
             case R.id.btn_record_list:
-                navController.navigate(R.id.action_recordFragment_to_audioListFragment);
+                if(isRecording){
+                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(getContext());
+                    alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            navController.navigate(R.id.action_recordFragment_to_audioListFragment);
+                            isRecording = false;
+                        }
+                    });
+                    alertDialog.setNegativeButton("CANCEL", null);
+                    alertDialog.setTitle("Audio Still recording");
+                    alertDialog.setMessage("Are you sure?");
+                    alertDialog.create().show();
+                }else{
+                    navController.navigate(R.id.action_recordFragment_to_audioListFragment);
+                }
                 break;
             case R.id.btn_record:
                 if(isRecording){
@@ -155,6 +172,15 @@ public class RecordFragment extends Fragment implements View.OnClickListener {
         else{
             ActivityCompat.requestPermissions(getActivity(), new String[]{recPermission}, codePermission);
             return false;
+        }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        if(isRecording){
+            stopRecording();
         }
     }
 }
